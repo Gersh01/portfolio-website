@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alexander Gershfeld · Cloud &amp; DevOps Engineer</title>
+  <meta name="description" content="Alexander Gershfeld is a computer science graduate focused on cloud infrastructure, automation, and DevOps.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Alexander Gershfeld · Cloud &amp; DevOps Engineer">
+  <meta property="og:description" content="Projects, experience, and the CI/CD pipeline that deploys this site.">
+  <meta name="theme-color" content="#0b7a6e">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">&gt;_</span>
+        <span class="brand-name">Alexander Gershfeld</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#pipeline">How it ships</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch color theme">
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M1.5 12h2.5M20 12h2.5M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77"/></svg>
+      </button>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span aria-hidden="true">$ </span>whoami</p>
+          <h1 id="hero-title">Alexander Gershfeld</h1>
+          <p class="role">Cloud &amp; DevOps Engineer</p>
+          <p class="lede">Computer science graduate focused on cloud infrastructure and automation. I build Docker-based infrastructure, AWS environments, and CI/CD pipelines, and like systems that are reliable, observable, and boring to deploy.</p>
+          <p class="status"><span class="status-dot" aria-hidden="true"></span><span>Open to entry-level cloud, DevOps &amp; SRE roles · Orlando, FL / Remote</span></p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">
+              View projects
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+            <!-- Drop your résumé into the site/ folder as resume.pdf. CI fails until it's there. -->
+            <a class="btn btn-secondary" href="resume.pdf">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+              Resume (PDF)
+            </a>
+            <ul class="social">
+              <li>
+                <a class="icon-btn" href="https://github.com/Gersh01" aria-label="GitHub">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </li>
+              <li>
+                <a class="icon-btn" href="https://www.linkedin.com/in/alexander-gershfeld" aria-label="LinkedIn">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><path d="M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              </li>
+              <li>
+                <a class="icon-btn" href="#contact" aria-label="Email">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="terminal" aria-hidden="true">
+          <div class="terminal-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-title">~/profile.yaml</span>
+          </div>
+<pre><code><span class="t-prompt">$</span> cat profile.yaml
+<span class="t-key">name</span>: <span class="t-str">Alexander Gershfeld</span>
+<span class="t-key">role</span>: <span class="t-str">cloud-devops-engineer</span>
+<span class="t-key">education</span>:
+  <span class="t-key">degree</span>: <span class="t-str">B.S. Computer Science</span>
+  <span class="t-key">school</span>: <span class="t-str">University of Central Florida</span>
+  <span class="t-key">class_of</span>: <span class="t-str">2026</span>
+<span class="t-key">technologies</span>: [<span class="t-str">aws</span>, <span class="t-str">docker</span>, <span class="t-str">github-actions</span>, <span class="t-str">terraform</span>,
+        <span class="t-str">linux</span>, <span class="t-str">bash</span>, <span class="t-str">python</span>, <span class="t-str">ardupilot</span>]
+<span class="t-key">status</span>: <span class="t-ok">open_to_work</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">01 · experience</p>
+          <h2 id="experience-title">Experience &amp; education</h2>
+        </div>
+
+        <div class="stack">
+          <!-- Check with your capstone advisor or Lockheed Martin sponsor what you're allowed to say publicly. Describe the engineering, not anything sensitive. -->
+          <article class="card featured">
+            <div class="card-head">
+              <div>
+                <p class="org">Lockheed Martin · Industry-sponsored capstone</p>
+                <h3>DevOps &amp; Infrastructure Lead, VITALS</h3>
+              </div>
+              <p class="dates">Aug 2025 – May 2026</p>
+            </div>
+            <p>An end-to-end hardware and software system that automates search and rescue with autonomous drone swarms. Its human-in-the-loop design uses computer vision and large language models to scan large search areas, flag targets of interest, and coordinate multiple UAVs from a single ground control station.</p>
+            <ul class="bullets">
+              <li>Led DevOps and infrastructure for a six-person engineering team, designing the development and deployment environments for the drone swarm platform.</li>
+              <li>Deployed AWS infrastructure with EC2, Elastic IP, and API Gateway, with automated server start/stop to cut operating costs.</li>
+              <li>Designed a containerized microservices architecture on Docker user-defined networks, making services portable and reliable across development and deployment.</li>
+              <li>Ran an offline OpenStreetMap tile server in Docker, bringing map query response time from 10 seconds to under 1 second.</li>
+              <li>Owned the GitHub CI/CD pipeline that runs unit and integration tests on new features, and kept the team on a consistent Git workflow.</li>
+            </ul>
+            <ul class="tags">
+              <li>AWS EC2</li>
+              <li>API Gateway</li>
+              <li>Docker</li>
+              <li>CI/CD</li>
+              <li>Python</li>
+              <li>Bash</li>
+              <li>ArduPilot</li>
+              <li>YOLOv11</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <p class="org">University of Central Florida</p>
+                <h3>Teaching Assistant, Introduction to Discrete Structures</h3>
+              </div>
+              <p class="dates">Jan 2025 – May 2025</p>
+            </div>
+            <ul class="bullets">
+              <li>Ran weekly labs, wrote lesson plans and problem sets, and occasionally lectured the full class.</li>
+              <li>Worked with the instructor and other TAs to keep grading and assignments consistent.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <p class="org">Student Academic Resource Center, UCF</p>
+                <h3>Supplemental Instruction Leader &amp; Peer Tutor</h3>
+              </div>
+              <p class="dates">Dec 2023 – Jan 2025</p>
+            </div>
+            <ul class="bullets">
+              <li>Led interactive sessions for Discrete Computational Structures and Object-Oriented Programming, using Socratic questioning to teach students how to reason through the material.</li>
+              <li>Students who attended averaged 5% higher on exams.</li>
+              <li>Collaborated with faculty on lecture plans, problem sets, and exam reviews.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <p class="org">University of Central Florida</p>
+                <h3>B.S. in Computer Science</h3>
+              </div>
+              <p class="dates">Graduated May 2026</p>
+            </div>
+            <p><strong>Relevant coursework:</strong> Analysis of Computer Communication Networks, Security in Computing, System Software, Data Structures and Algorithms, Design and Analysis of Algorithms, Processes of Object-Oriented Design, Artificial Intelligence, Senior Design</p>
+            <p><strong>Awards:</strong> President's Honor Roll (2021, 2023, 2024) · Dean's List (2023, 2024)</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">02 · projects</p>
+          <h2 id="projects-title">Projects</h2>
+          <p>What I've built, the problem each one solved, and what I learned shipping it.</p>
+        </div>
+
+        <!-- Order matters: lead with whatever is closest to cloud/DevOps (containerized, deployed, automated, monitored). Copy a card to add more. -->
+        <div class="project-grid">
+          <article class="card project">
+            <div class="project-top">
+              <h3>This portfolio</h3>
+              <span class="badge">Live</span>
+            </div>
+            <p class="summary">A static site hosted on AWS, provisioned entirely with Terraform and deployed on every push by GitHub Actions.</p>
+            <ul class="bullets">
+              <li>Private S3 bucket served through CloudFront with Origin Access Control, HTTPS, and managed security headers.</li>
+              <li>GitHub Actions signs in to AWS with OIDC and a least-privilege IAM role, so no long-lived access keys exist anywhere.</li>
+              <li>CI validates the HTML and Terraform on every pull request and blocks deploys that still contain placeholder content.</li>
+            </ul>
+            <ul class="tags">
+              <li>AWS S3</li><li>CloudFront</li><li>Terraform</li><li>GitHub Actions</li><li>IAM / OIDC</li>
+            </ul>
+            <p class="links">
+              <a href="https://github.com/Gersh01/portfolio">Source code</a>
+              <a href="#pipeline">How it ships</a>
+            </p>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>VITALS</h3>
+            </div>
+            <p class="summary">A search-and-rescue platform for Lockheed Martin that coordinates autonomous drone swarms from a single ground control station.</p>
+            <ul class="bullets">
+              <li>Computer vision (YOLOv11) and large language models scan large search areas and flag targets for a human operator to confirm.</li>
+              <li>Services run as Docker containers on user-defined networks, backed by AWS EC2 and API Gateway with automated start/stop to keep costs down.</li>
+              <li>An offline OpenStreetMap tile server in Docker cut map query time from 10 seconds to under 1 second.</li>
+            </ul>
+            <ul class="tags">
+              <li>Docker</li><li>AWS EC2</li><li>API Gateway</li><li>ArduPilot</li><li>YOLOv11</li><li>Python</li>
+            </ul>
+            <p class="links">
+              <a href="https://github.com/brendantr/VITALS-AI-DroneSwarm">Source code</a>
+              <a href="https://www.youtube.com/watch?v=EE4i8XSY4mE">Showcase video</a>
+              <a href="https://www.youtube.com/watch?v=x99YQwUZ260">Live demo</a>
+            </p>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>Dev Fusion</h3>
+            </div>
+            <p class="summary">A MERN-stack web app that brings software developers together to find teammates and build projects as a team.</p>
+            <ul class="bullets">
+              <li>Project manager for a seven-person team, built as the final project for Processes of Object-Oriented Software Development.</li>
+              <li>Set up the team's Git flow and a CI/CD pipeline that runs unit tests on each change before it reaches production.</li>
+            </ul>
+            <ul class="tags">
+              <li>React</li><li>JavaScript</li><li>MERN</li><li>HTML/CSS</li><li>CI/CD</li>
+            </ul>
+            <p class="links"><a href="https://github.com/Gersh01/Dev-Fusion">Source code</a></p>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>2-4 Tree Database</h3>
+            </div>
+            <p class="summary">A 2-4 tree for integer keys, built from scratch in Java out of curiosity.</p>
+            <ul class="bullets">
+              <li>Implemented a working 2-4 tree for integer values in Java.</li>
+              <li>Wrote C++ test inputs of varying sizes and measured average run time for each.</li>
+            </ul>
+            <ul class="tags">
+              <li>Java</li><li>C++</li><li>Data structures</li>
+            </ul>
+            <p class="links"><a href="https://github.com/Gersh01/2-4-Tree-Database">Source code</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">03 · skills</p>
+          <h2 id="skills-title">Skills &amp; tools</h2>
+          <p>The tools I've used on real projects and can talk through in depth.</p>
+        </div>
+
+        <div class="skill-grid">
+          <div class="card skill-group">
+            <h3>Cloud</h3>
+            <ul class="tags"><li>AWS EC2</li><li>Elastic IP</li><li>API Gateway</li><li>S3</li><li>CloudFront</li><li>IAM</li><li>Cloud security</li></ul>
+          </div>
+          <div class="card skill-group">
+            <h3>Infrastructure as code</h3>
+            <ul class="tags"><li>Terraform</li><li>YAML</li></ul>
+          </div>
+          <div class="card skill-group">
+            <h3>CI/CD &amp; version control</h3>
+            <ul class="tags"><li>GitHub Actions</li><li>Git</li><li>Unit &amp; integration testing</li></ul>
+          </div>
+          <div class="card skill-group">
+            <h3>Containers</h3>
+            <ul class="tags"><li>Docker</li><li>User-defined networks</li><li>Microservices</li></ul>
+          </div>
+          <div class="card skill-group">
+            <h3>Linux &amp; scripting</h3>
+            <ul class="tags"><li>Linux</li><li>Bash</li><li>Python</li><li>VirtualBox</li></ul>
+          </div>
+          <div class="card skill-group">
+            <h3>Languages</h3>
+            <ul class="tags"><li>Python</li><li>C/C++</li><li>Java</li><li>JavaScript</li><li>HTML/CSS</li><li>LaTeX</li></ul>
+          </div>
+        </div>
+
+        <p class="cert-line"><strong>Certifications:</strong> Google IT Specialist (Aug 2023) · AWS Academy Cloud Security Foundations, training badge (Apr 2026)</p>
+      </div>
+    </section>
+
+    <!-- ============ PIPELINE ============ -->
+    <section class="section" id="pipeline" aria-labelledby="pipeline-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-kicker">04 · how it ships</p>
+          <h2 id="pipeline-title">How this site is deployed</h2>
+          <p>This page is a small, working example of the kind of pipeline I want to build professionally. Every change goes through the same five steps.</p>
+        </div>
+
+        <ol class="pipeline">
+          <li>
+            <span class="step-num">01</span>
+            <h3>Push</h3>
+            <p>A commit lands on <code>main</code> in GitHub.</p>
+          </li>
+          <li>
+            <span class="step-num">02</span>
+            <h3>Validate</h3>
+            <p>GitHub Actions validates the HTML, checks for leftover placeholders, and runs <code>terraform validate</code>.</p>
+          </li>
+          <li>
+            <span class="step-num">03</span>
+            <h3>Authenticate</h3>
+            <p>The workflow assumes a least-privilege IAM role through OIDC. No stored AWS keys.</p>
+          </li>
+          <li>
+            <span class="step-num">04</span>
+            <h3>Deploy</h3>
+            <p><code>aws s3 sync</code> uploads changed files to a private, versioned S3 bucket.</p>
+          </li>
+          <li>
+            <span class="step-num">05</span>
+            <h3>Serve</h3>
+            <p>The CloudFront cache is invalidated and the new version is live over HTTPS.</p>
+          </li>
+        </ol>
+
+        <!-- If you skip the custom domain, drop "ACM, and Route 53" from this line. -->
+        <p class="infra-note">
+          Infrastructure: S3, CloudFront, IAM, ACM, and Route 53, all defined in Terraform.
+          <a href="https://github.com/Gersh01/portfolio/tree/main/infra">Read the code</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="card contact-card">
+          <p class="section-kicker">05 · contact</p>
+          <h2 id="contact-title">Let's talk</h2>
+          <p>I'm looking for entry-level roles in cloud engineering, DevOps, or site reliability. Email is the fastest way to reach me.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="mailto:alex.gershfeld@gmail.com">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+              alex.gershfeld@gmail.com
+            </a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/alexander-gershfeld">LinkedIn</a>
+            <a class="btn btn-secondary" href="https://github.com/Gersh01">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> Alexander Gershfeld</p>
+      <p>Plain HTML &amp; CSS · Terraform · GitHub Actions · AWS</p>
+    </div>
+  </footer>
+</body>
+</html>

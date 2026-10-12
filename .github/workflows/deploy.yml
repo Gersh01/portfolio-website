@@ -1,0 +1,90 @@
+name: CI / Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never run two deploys at once; let an in-progress one finish.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check-site:
+    name: Check site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate HTML
+        run: npx --yes html-validate@11 "site/**/*.html"
+
+      - name: Fail if template placeholders remain
+        run: |
+          if grep -rnE 'class="todo"|TODO' site/; then
+            echo "::error::Replace the placeholders listed above before deploying."
+            exit 1
+          fi
+
+      - name: Fail if the résumé is missing
+        run: |
+          if [ ! -f site/resume.pdf ]; then
+            echo "::error::Add your résumé as site/resume.pdf (the homepage links to it)."
+            exit 1
+          fi
+
+  check-infra:
+    name: Check Terraform
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: terraform fmt
+        run: terraform fmt -check -recursive
+
+      - name: terraform validate
+        run: |
+          terraform init -backend=false -input=false
+          terraform validate
+
+  deploy:
+    name: Deploy to AWS
+    needs: [check-site, check-infra]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # lets the job request an OIDC token for AWS
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sign in to AWS (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Upload site to S3
+        run: >
+          aws s3 sync site/ "s3://${{ vars.S3_BUCKET }}"
+          --delete
+          --cache-control "public, max-age=300"
+
+      - name: Invalidate CloudFront cache
+        run: >
+          aws cloudfront create-invalidation
+          --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}"
+          --paths "/*"

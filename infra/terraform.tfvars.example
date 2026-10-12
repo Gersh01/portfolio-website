@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars and fill in.
+github_repo = "your-github-username/portfolio"
+
+# Optional: a domain whose hosted zone is already in Route 53.
+# domain_name = "yourname.dev"
+
+# Set to false if your AWS account already has the GitHub OIDC provider.
+# create_github_oidc_provider = false
