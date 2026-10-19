@@ -8,7 +8,7 @@ terraform {
     }
   }
 
-  # Once everything works, move state off your laptop into S3 (create the bucket first):
+  # Remote state, to enable once the state bucket exists:
   # backend "s3" {
   #   bucket       = "your-terraform-state-bucket"
   #   key          = "portfolio/terraform.tfstate"

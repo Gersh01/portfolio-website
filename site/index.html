@@ -58,7 +58,6 @@
               View projects
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
             </a>
-            <!-- Drop your résumé into the site/ folder as resume.pdf. CI fails until it's there. -->
             <a class="btn btn-secondary" href="resume.pdf">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
               Resume (PDF)
@@ -75,7 +74,7 @@
                 </a>
               </li>
               <li>
-                <a class="icon-btn" href="#contact" aria-label="Email">
+                <a class="icon-btn" href="mailto:alex.gershfeld@gmail.com" aria-label="Email">
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
                 </a>
               </li>
@@ -111,7 +110,6 @@
         </div>
 
         <div class="stack">
-          <!-- Check with your capstone advisor or Lockheed Martin sponsor what you're allowed to say publicly. Describe the engineering, not anything sensitive. -->
           <article class="card featured">
             <div class="card-head">
               <div>
@@ -193,33 +191,22 @@
           <p>What I've built, the problem each one solved, and what I learned shipping it.</p>
         </div>
 
-        <!-- Order matters: lead with whatever is closest to cloud/DevOps (containerized, deployed, automated, monitored). Copy a card to add more. -->
         <div class="project-grid">
-          <article class="card project">
-            <div class="project-top">
-              <h3>This portfolio</h3>
-              <span class="badge">Live</span>
-            </div>
-            <p class="summary">A static site hosted on AWS, provisioned entirely with Terraform and deployed on every push by GitHub Actions.</p>
-            <ul class="bullets">
-              <li>Private S3 bucket served through CloudFront with Origin Access Control, HTTPS, and managed security headers.</li>
-              <li>GitHub Actions signs in to AWS with OIDC and a least-privilege IAM role, so no long-lived access keys exist anywhere.</li>
-              <li>CI validates the HTML and Terraform on every pull request and blocks deploys that still contain placeholder content.</li>
-            </ul>
-            <ul class="tags">
-              <li>AWS S3</li><li>CloudFront</li><li>Terraform</li><li>GitHub Actions</li><li>IAM / OIDC</li>
-            </ul>
-            <p class="links">
-              <a href="https://github.com/Gersh01/portfolio">Source code</a>
-              <a href="#pipeline">How it ships</a>
-            </p>
-          </article>
-
-          <article class="card project">
+          <article class="card project project-wide">
             <div class="project-top">
               <h3>VITALS</h3>
             </div>
             <p class="summary">A search-and-rescue platform for Lockheed Martin that coordinates autonomous drone swarms from a single ground control station.</p>
+            <div class="project-media">
+              <iframe
+                class="video"
+                src="https://www.youtube-nocookie.com/embed/x99YQwUZ260?rel=0"
+                title="VITALS Live Flight Demo"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen></iframe>
+            </div>
             <ul class="bullets">
               <li>Computer vision (YOLOv11) and large language models scan large search areas and flag targets for a human operator to confirm.</li>
               <li>Services run as Docker containers on user-defined networks, backed by AWS EC2 and API Gateway with automated start/stop to keep costs down.</li>
@@ -231,7 +218,27 @@
             <p class="links">
               <a href="https://github.com/brendantr/VITALS-AI-DroneSwarm">Source code</a>
               <a href="https://www.youtube.com/watch?v=EE4i8XSY4mE">Showcase video</a>
-              <a href="https://www.youtube.com/watch?v=x99YQwUZ260">Live demo</a>
+              <a href="https://www.youtube.com/watch?v=x99YQwUZ260">Live demo on YouTube</a>
+            </p>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>This portfolio</h3>
+              <span class="badge">Live</span>
+            </div>
+            <p class="summary">A static site hosted on AWS, provisioned entirely with Terraform and deployed on every push by GitHub Actions.</p>
+            <ul class="bullets">
+              <li>Private S3 bucket served through CloudFront with Origin Access Control, HTTPS, and managed security headers.</li>
+              <li>GitHub Actions signs in to AWS with OIDC and a least-privilege IAM role, so no long-lived access keys exist anywhere.</li>
+              <li>CI validates the HTML and Terraform on every pull request, and only a passing build on <code>main</code> deploys.</li>
+            </ul>
+            <ul class="tags">
+              <li>AWS S3</li><li>CloudFront</li><li>Terraform</li><li>GitHub Actions</li><li>IAM / OIDC</li>
+            </ul>
+            <p class="links">
+              <a href="https://github.com/Gersh01/portfolio-website">Source code</a>
+              <a href="#pipeline">How it ships</a>
             </p>
           </article>
 
@@ -326,7 +333,7 @@
           <li>
             <span class="step-num">02</span>
             <h3>Validate</h3>
-            <p>GitHub Actions validates the HTML, checks for leftover placeholders, and runs <code>terraform validate</code>.</p>
+            <p>GitHub Actions validates the HTML and runs <code>terraform fmt</code> and <code>terraform validate</code>.</p>
           </li>
           <li>
             <span class="step-num">03</span>
@@ -345,10 +352,9 @@
           </li>
         </ol>
 
-        <!-- If you skip the custom domain, drop "ACM, and Route 53" from this line. -->
         <p class="infra-note">
           Infrastructure: S3, CloudFront, IAM, ACM, and Route 53, all defined in Terraform.
-          <a href="https://github.com/Gersh01/portfolio/tree/main/infra">Read the code</a>
+          <a href="https://github.com/Gersh01/portfolio-website/tree/main/infra">Read the code</a>
         </p>
       </div>
     </section>
@@ -365,6 +371,10 @@
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
               alex.gershfeld@gmail.com
             </a>
+            <button class="btn btn-secondary copy-email" type="button" data-email="alex.gershfeld@gmail.com">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="copy-label" aria-live="polite">Copy email</span>
+            </button>
             <a class="btn btn-secondary" href="https://www.linkedin.com/in/alexander-gershfeld">LinkedIn</a>
             <a class="btn btn-secondary" href="https://github.com/Gersh01">GitHub</a>
           </div>
@@ -376,7 +386,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© <span id="year">2026</span> Alexander Gershfeld</p>
-      <p>Plain HTML &amp; CSS · Terraform · GitHub Actions · AWS</p>
+      <p class="deploy-stamp">Local build</p>
     </div>
   </footer>
 </body>

@@ -13,3 +13,7 @@ Thumbs.db
 .idea/
 
 node_modules/
+
+# Local only
+.claude/
+interview-notes.md

@@ -46,6 +46,49 @@
       });
     }
 
+    // Copy email (for visitors without a mail app set up)
+    const copyBtn = document.querySelector(".copy-email");
+    if (copyBtn) {
+      const label = copyBtn.querySelector(".copy-label");
+      const email = copyBtn.getAttribute("data-email");
+      let resetTimer;
+      const show = function (text) {
+        label.textContent = text;
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function () {
+          label.textContent = "Copy email";
+        }, 2000);
+      };
+      const fallbackCopy = function () {
+        // Older browsers, or pages not served over HTTPS/localhost.
+        const field = document.createElement("textarea");
+        field.value = email;
+        field.setAttribute("readonly", "");
+        field.style.position = "fixed";
+        field.style.opacity = "0";
+        document.body.appendChild(field);
+        field.select();
+        let ok = false;
+        try {
+          ok = document.execCommand("copy");
+        } catch (e) {
+          ok = false;
+        }
+        document.body.removeChild(field);
+        return ok;
+      };
+      copyBtn.addEventListener("click", function () {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(email).then(
+            function () { show("Copied!"); },
+            function () { show(fallbackCopy() ? "Copied!" : email); }
+          );
+        } else {
+          show(fallbackCopy() ? "Copied!" : email);
+        }
+      });
+    }
+
     // Footer year
     const year = document.getElementById("year");
     if (year) year.textContent = String(new Date().getFullYear());

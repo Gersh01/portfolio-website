@@ -28,10 +28,10 @@ jobs:
       - name: Validate HTML
         run: npx --yes html-validate@11 "site/**/*.html"
 
-      - name: Fail if template placeholders remain
+      - name: Fail on TODO markers
         run: |
-          if grep -rnE 'class="todo"|TODO' site/; then
-            echo "::error::Replace the placeholders listed above before deploying."
+          if grep -rn 'TODO' site/; then
+            echo "::error::Resolve the TODOs listed above before deploying."
             exit 1
           fi
 
@@ -70,6 +70,16 @@ jobs:
       id-token: write # lets the job request an OIDC token for AWS
     steps:
       - uses: actions/checkout@v4
+
+      # Replace the footer's "Local build" text with the commit being deployed.
+      - name: Stamp deploy info into footer
+        run: |
+          short_sha="${GITHUB_SHA::7}"
+          commit_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+          deployed_on="$(date -u '+%b %-d, %Y')"
+          stamp="Deployed from <a href=\"${commit_url}\"><code>${short_sha}</code></a> on ${deployed_on}"
+          sed -i "s|<p class=\"deploy-stamp\">Local build</p>|<p class=\"deploy-stamp\">${stamp}</p>|" site/index.html
+          grep -q "$short_sha" site/index.html || { echo "::error::Footer deploy stamp not found in site/index.html"; exit 1; }
 
       - name: Sign in to AWS (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
