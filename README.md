@@ -6,7 +6,6 @@ Source for my portfolio site: static HTML and CSS on AWS, with the infrastructur
 git push → GitHub Actions → (OIDC) IAM role → S3 (private, versioned) → CloudFront → HTTPS
 ```
 
-<<<<<<< HEAD
 | Path | Contents |
 |---|---|
 | `site/` | The site itself. No build step. |
@@ -63,6 +62,3 @@ After that, every push to `main` deploys.
 ## Cost
 
 Under $1/month at portfolio traffic levels. A Route 53 hosted zone adds $0.50/month when using a custom domain.
-=======
-
->>>>>>> bb3ac222847ccb6041b1ac6e7376b861dab68d11
