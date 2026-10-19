@@ -1,6 +1,11 @@
 # Copy to terraform.tfvars and fill in.
 github_repo = "your-github-username/portfolio"
 
+# If deploys fail with "Not authorized to perform sts:AssumeRoleWithWebIdentity", GitHub is
+# likely sending ID-qualified subjects. Find the IDs in the failed event in CloudTrail.
+# github_owner_id = 12345678
+# github_repo_id  = 987654321
+
 # Optional: a domain whose hosted zone is already in Route 53.
 # domain_name = "yourname.dev"
 

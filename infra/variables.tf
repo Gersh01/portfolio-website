@@ -20,6 +20,18 @@ variable "github_repo" {
   }
 }
 
+variable "github_owner_id" {
+  description = "Numeric ID of the GitHub account that owns the repo. Set with github_repo_id when GitHub's OIDC tokens use the ID-qualified subject (\"repo:owner@id/name@id:...\")."
+  type        = number
+  default     = null
+}
+
+variable "github_repo_id" {
+  description = "Numeric ID of the GitHub repo. See github_owner_id."
+  type        = number
+  default     = null
+}
+
 variable "github_branch" {
   description = "Only workflows running on this branch can assume the deploy role."
   type        = string

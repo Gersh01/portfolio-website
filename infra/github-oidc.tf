@@ -22,6 +22,13 @@ locals {
     aws_iam_openid_connect_provider.github[*].arn,
     data.aws_iam_openid_connect_provider.github[*].arn,
   ))
+
+  # GitHub can identify the repo as "owner@ownerId/name@repoId" in the token's subject.
+  # Matching the numeric IDs means a deleted-and-recreated repo with the same name can't deploy.
+  github_owner        = split("/", var.github_repo)[0]
+  github_repo_name    = split("/", var.github_repo)[1]
+  use_github_ids      = var.github_owner_id != null && var.github_repo_id != null
+  github_subject_repo = local.use_github_ids ? "${local.github_owner}@${var.github_owner_id}/${local.github_repo_name}@${var.github_repo_id}" : var.github_repo
 }
 
 # Trust policy: only this repo, only this branch.
@@ -43,7 +50,7 @@ data "aws_iam_policy_document" "github_assume_role" {
     condition {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:${var.github_repo}:ref:refs/heads/${var.github_branch}"]
+      values   = ["repo:${local.github_subject_repo}:ref:refs/heads/${var.github_branch}"]
     }
   }
 }
