@@ -21,19 +21,21 @@ resource "aws_acm_certificate" "site" {
   }
 }
 
-resource "aws_route53_record" "cert_validation" {
-  for_each = {
-    for dvo in flatten(aws_acm_certificate.site[*].domain_validation_options) : dvo.domain_name => {
-      name   = dvo.resource_record_name
-      type   = dvo.resource_record_type
-      record = dvo.resource_record_value
-    }
+# ACM's validation records only exist once the certificate does, so key the records by
+# domain name (known at plan time) and look up the record details at apply time.
+locals {
+  cert_validation_options = {
+    for dvo in flatten(aws_acm_certificate.site[*].domain_validation_options) : dvo.domain_name => dvo
   }
+}
+
+resource "aws_route53_record" "cert_validation" {
+  for_each = toset(local.aliases)
 
   zone_id         = data.aws_route53_zone.site[0].zone_id
-  name            = each.value.name
-  type            = each.value.type
-  records         = [each.value.record]
+  name            = local.cert_validation_options[each.key].resource_record_name
+  type            = local.cert_validation_options[each.key].resource_record_type
+  records         = [local.cert_validation_options[each.key].resource_record_value]
   ttl             = 300
   allow_overwrite = true
 }
